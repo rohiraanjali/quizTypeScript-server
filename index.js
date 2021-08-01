@@ -6,7 +6,6 @@ const { initializeDBConnection } = require("./Database/Db.js");
 const CategoryRoutes = require("./routes/category.routes");
 const Category = require("./models/category.models");
 const errorHandler = require("./middleware/error-handler");
-const routeNotFound = require("./middleware/route-not-found");
 const dotenv = require("dotenv").config();
 
 console.log(dotenv.parsed);
@@ -15,11 +14,8 @@ initializeDBConnection();
 app.use(cors());
 app.use(bodyParser.json());
 
-
 app.use(CategoryRoutes)
 app.use(errorHandler);
-app.use(routeNotFound);
-
 
 app.get("/", (req, res) => {
     res.json("Quiz API is running");
